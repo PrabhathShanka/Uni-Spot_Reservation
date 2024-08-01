@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.png" rel="icon">
+    <link href="img/favicon1.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,6 @@
         color: rgb(255, 255, 255);
         font-size:110%;
         }
-
     </style>
 </head>
 
@@ -84,45 +83,27 @@
             </div>
          <div class="col-lg-6">   <!--dikkaranna-->
                 <div class="bg-primary h-100 d-flex flex-column justify-content-center  p-5 wow zoomIn" data-wow-delay="0.6s">
-                    <h1 class="text-center text-white mb-4">Sign Up</h1>  
-                    <form action ="register.php" method="POST" >
+                    <h1 class="text-center text-white mb-4">Admin Login</h1>  
+                    <form action="adminlogin.php" method="POST">
                         
                         <div class="row g-3">
-                            <div class="col-12 col-sm-6">
-                                <h5>Name:</h5>
-                                <input type="text"  name ="firstName" class="form-control border-0" placeholder="Name" style="height: 55px;" required>
-                            </div>
-   
-                            <div class="col-12 col-sm-6">
-                                <h5>Telephone Number:</h5>
-                                <input type="text" name="number" class="form-control border-0" placeholder="Telephone Number" style="height: 55px;"required>
-                            </div>
-
-                            <div class="col-12 col-sm-6">
-                                <h5>Address:</h5>
-                                <input type="text"  name ="address" class="form-control border-0" placeholder="address" style="height: 55px;" required>
-                            </div>
-
                             <div>
-                                <h5>Email:</h5>
-                                <input type="email" name="email" class="form-control border-0" placeholder="Email" style="height: 55px;"required>
+                                <h4>Username:</h4>
+                                <input type="text" name="uname" class="form-control border-0" placeholder="Username" style="height: 55px;" required>
                                 <br>
-                                <h5>Password:</h5>
-                                <input type="password" name = "pass1"class="form-control border-0" placeholder="Password" style="height: 55px;"required>
+                            
+
+                            
+                                <h4>Password:</h4>
+                                <input type="password" name = "pass"class="form-control border-0" placeholder="Password" style="height: 55px;"required>
                                 <br>
-                                <h5>Confirm Password:</h5>
-                                <input type="password" name="pass2" class="form-control border-0" placeholder="Confirm Password" style="height: 55px;"required>
                                 <br>
                             </div>
 
                             <div class="col-12">
-                                <!-- Helicopter<input type="submit" value="Register" class="btn btn-primary w-100 py-3  spinner-border"> </input>  -->
-                                <input type="submit" name="submit" value="Register" class="btn btn-secondary w-100 py-3"> </input>
+                                <input type="submit" name="submit" value="Login" class="btn btn-secondary w-100 py-3"> </input>
                             </div>
-                                <div class="text-center text-white">
-                                    Already member? &nbsp;
-                                    <a class="heading" href="Sign in.html"> Login</a>
-                                </div>
+                                
 
                         </div>
                     </form>
@@ -136,6 +117,7 @@
 
 
     <!-- Footer Start -->
+
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.2s">
         <div class="container py-0">
             <div class="row g-2">
