@@ -1,15 +1,6 @@
 <?php
 
 
-    // $fName = $_POST['fName'];
-    // $UserName = $_POST['uName'];
-    // $Tnumber = $_POST['TeNumber'];
-    // $NICnumber = $_POST['NIC'];
-    // $Regnumber = $_POST['GegNumber'];
-    // $email = $_POST['email'];
-    // $pass1 = $_POST['password1'];
-    // $pass2 = $_POST['password2'];
-
     $fName = $_POST['fName'];
     $uName = $_POST['UserName'];
     $TeNumber = $_POST['Tnumber'];
@@ -22,7 +13,7 @@
     require 'DatabaseConnection.php';
 
     if ($password1 == $password2) {
-        $sql = "INSERT INTO `users`(`fullName`,`userName`, `teleNumber`, `NICNumber`, `registerNumber`, `email`, `password`) VALUES ('$fName','$uName','$TeNumber','$NIC','$Regnumber','$email','$password1')";
+        $sql = "INSERT INTO `users`(`fullName`,`userName`, `teleNumber`, `NICNumber`, `registerNumber`, `email`, `password1`) VALUES ('$fName','$uName','$TeNumber','$NIC','$Regnumber','$email','$password1')";
         $ret = mysqli_query($conn, $sql);
 
         if ($ret) {
