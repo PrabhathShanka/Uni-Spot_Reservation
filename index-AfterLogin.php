@@ -265,10 +265,10 @@ require 'DatabaseConnection.php';
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-primary text-uppercase">- location -</h6>
+                <h1 class="text-primary text-uppercase">- location -</h1>
  
                 <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.690303517259!2d80.22145247578415!3d6.037167728622127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae173b12f4deb15%3A0x31ccbc33eb91d2ac!2sNIBM%20Galle%20Centre!5e0!3m2!1sen!2slk!4v1687097033392!5m2!1sen!2slk" width="1300" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126661.41682215152!2d79.6747209!3d6.9287251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae38a5d15e55917%3A0x92bb8770edf29b53!2sSabaragamuwa%20University%20of%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v1692345678901!5m2!1sen!2slk" width="1300" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 
             </div>
