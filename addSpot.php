@@ -1,3 +1,66 @@
+<?php
+
+if(isset($_POST["submit"])){
+
+    require 'DatabaseConnection.php';
+
+    $SName = $_POST['sName'];
+    $Sdiscription = $_POST['description'];
+    if($_FILES["image"]["error"] === 4){
+        echo
+        "<script> alert('Image Does Not Exist')</script>";
+    }else{
+        $fileName = $_FILES["image"]["name"];
+        $fileSize = $_FILES["image"]["size"];
+        $tmpName = $_FILES["image"]["tmp_name"];
+    
+        $validImageExtension = ['jpg', 'jpeg', 'png'];
+        $imageExtension = explode('.', $fileName);
+        $imageExtension = strtolower(end($imageExtension));
+        if ( !in_array($imageExtension, $validImageExtension) ){
+          echo
+          "
+          <script>
+            alert('Invalid Image Extension');
+          </script>
+          ";
+        }
+        else if($fileSize > 1000000){
+          echo
+          "
+          <script>
+            alert('Image Size Is Too Large');
+          </script>
+          ";
+        }
+
+
+        else{
+            $newImageName = uniqid();
+            $newImageName .= '.' . $imageExtension;
+      
+            move_uploaded_file($tmpName, 'img2/' . $newImageName);
+            $query = "INSERT INTO spot VALUES('$SName' , '$newImageName' , '$Sdiscription')";
+            mysqli_query($conn, $query);
+            echo
+            "
+            <script>
+              alert('Successfully Added');
+              document.location.href = 'addSpot.php';
+            </script>
+            ";
+          }
+        }
+      }
+
+      ?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,23 +152,27 @@
             </div>
          <div class="col-lg-6">   <!--dikkaranna-->
                 <div class="bg-primary h-100 d-flex flex-column justify-content-center  p-5 wow zoomIn" data-wow-delay="0.6s">
-                    <h1 class="text-center text-white mb-4">Add Spot</h1>  
-                    <form action ="Register.php" method="POST" >
+                    <h1 class="text-center text-white mb-4">Add Spot</h1>
+                    
+                    
+                    <form class="" action="" method="post" autocomplete="off" enctype="multipart/form-data">
                         
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
                                 <h5>Spot Name:</h5>
-                                <input type="text"  name ="fName" class="form-control border-0" placeholder="(eg:- Shiran Malitha)" style="height: 60px;"  required>
+                                <input type="text"  name ="sName" id ="sName" class="form-control border-0" placeholder="(eg:- The Matta Ground)" style="height: 60px;" ><br>
                             </div>
 
-                            <div class="col-12 col-sm-6">
-                                <h5>Spot Image:</h5>
-                                <input type="text"  name ="UserName" class="form-control border-0"  style="height: 55px;" required>
-                            </div>
+                           
    
                             <div class="col-12 col-sm-6">
                                 <h5>Description:</h5>
-                                <input type="text" name="Tnumber" class="form-control border-0"  style="height: 60px;"required>
+                                <input type="text" name="description" id="description" class="form-control border-0"  style="height: 60px;"required>
+                            </div>
+
+                            <div >
+                                <h5>Spot Image:</h5>
+                                <input type="file" name="image" id = "image" accept=".jpg, .jpeg, .png" value=""> <br>
                             </div>
 
                             <div class="col-12">

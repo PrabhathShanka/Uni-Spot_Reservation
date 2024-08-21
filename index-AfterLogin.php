@@ -65,7 +65,7 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="#go-home" class="nav-item nav-link active">Home</a>
                 <a href="#go-about" class="nav-item nav-link">About</a>
-                <a href="#go-services" class="nav-item nav-link">Spots Details</a>
+                <a href="#go-services" class="nav-item nav-link">Spot Details</a>
                 <a href="#go-contact" class="nav-item nav-link">LOCATION </a>
             </div>
 
@@ -201,55 +201,53 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="text-primary text-uppercase">- Spots Details -</h1>
- 
+                <h1 class="text-primary text-uppercase">- Spot Details -</h1>
+                <br>
                 
      
   
-                <?php
-$conn = new mysqli('localhost', 'root', '', 'reg');
-if ($conn->connect_error) {
-    die('Not Connected..');
-} else {
+<?php
 
-    $rawValue = $NIC; // Replace this with the actual value you are comparing
 
-    $sql = "SELECT * FROM vehicle";
-    $data = $conn->query($sql);
+require 'DatabaseConnection.php';
 
-    // Move the table and header row outside of the loop
-    echo "<table>
-            <tr>
-                <th>Model</th>
-                <th>Model</th>
-                <th>Manufactured Year</th>
-                <th>Actions</th>
-            </tr>";
+  ?> 
+<table border = 1 cellspacing = 0 cellpadding = 10>
+      <tr>
+        <!-- <td>sport name</td>
+        <td>Description</td> -->
+        <!-- <td>Image</td> -->
+      </tr>
+      <?php
+      //$i = 1;
+      $rows = mysqli_query($conn, "SELECT * FROM spot")
+      ?>
 
-    while ($raw = mysqli_fetch_array($data)) {
-        if ($raw[1] == $rawValue) { 
-            echo "<tr>
-                    <td>" . $raw[0] . "</td>
-                    <td>" . $raw[2] . "</td>
-                    <td>" . $raw[3] . "</td>
-                    <td>
-                        <a href='Make_an_Appoinment.php?id=" . $raw[0] . "'><b>| Make an Appoinment |</b></a>
-                        <a href='service_Details_costemer.php?id=".$raw[0]."'><b>| Service Details |</b></a>
-                        <a href='vrhicle_details_delete.php?id=" . $raw[0] . "'><b>| Delete |</b></a>
-                    </td>
-                </tr>";
-        }
-    }
-
-    // Close the table outside of the loop
+      <?php foreach ($rows as $row) : ?>
+      <tr>
+      
     
-    echo "</table>";
+      <td style="text-align: center; vertical-align: middle;">
+    <h1><?php echo $row["spotName"]; ?></h1><br>
+    <img src="img2/<?php echo $row["image"]; ?>" width="600" height="400" title="<?php echo $row['image']; ?>"><br>
+    <?php echo $row["description"]; ?><br>
+    <h1><a href='Make_an_Appoinment.php?id=" . $row["spotName"] . "'><b>| BOOK NOW |</b></h1>
 
-    echo "<a href='vehicle_insert.php'><h4><b><right>| ADD NEW VEHICLE DETAILS |</right></b></h4></a>";
+    <hr>
+</td>
+
+    </tr>
+
+      
+      <?php endforeach; ?>
+    </table>
+    
+
+
 
     
-}
-?>
+
+
                 
             </div>
         </div>
@@ -258,8 +256,6 @@ if ($conn->connect_error) {
 
 
 <hr><hr><hr>
-
-
 
 
     <!-- LOCATION  Start -->
