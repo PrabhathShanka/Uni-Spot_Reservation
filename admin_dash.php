@@ -2,8 +2,9 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
-    <title>Car Service Centers</title>
+    <title>Sabaragamuwa Uni</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -121,8 +122,13 @@
  
  <!-- Navbar Start -->
  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"> <!--i class="fa fa-car me-3"--> </i>GPSI PREMIUM</h2>
+ <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="img/susl_logo_transparent.png" alt="Your Image Description" style="width: 70px; height: 70px; vertical-align: middle; margin-right: 10px;">
+            <h2 class="m-0 text-primary">
+                <!-- Uncomment and place the image source URL -->
+                
+                Sabaragamuwa <br> University of Sri Lanka
+              </h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
