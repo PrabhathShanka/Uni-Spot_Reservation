@@ -28,7 +28,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Stylesheet -->
+    <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
     <style>
@@ -86,40 +86,30 @@
             <div class="col-lg-3 py-10">
                 
             </div>
+
+            <br>
          <div class="col-lg-6">   <!--dikkaranna-->
+            <br>
+            <br>
                 <div class="bg-primary h-100 d-flex flex-column justify-content-center  p-5 wow zoomIn" data-wow-delay="0.6s">
-                    <h1 class="text-center text-white mb-4">Sign In</h1>  
-
-                    <form action="userLogin.php" method="POST">
-                        
-                        <div class="row g-3">
-                            <div>
-                                
-                                <h4>User Name :</h4>
-                                <input type="text" name="uName" class="form-control border-0" placeholder="Username" style="height: 55px;" required>
-                                <br>
-                            
-
-                            
-                                <h4>Password:</h4>
-                                <input type="password"  name="password" class="form-control border-0" placeholder="Password" style="height: 55px;"required>
-                                <br>
-                                <br>
-                            </div>
+                    <h1 class="text-center text-white mb-4">Select Admin</h1>  
+  
+                    
 
                             <div class="col-12">
-                                <input type="submit" name="submit" value="Login" class="btn btn-secondary w-100 py-3"> </input>
-                            </div>
-                                <div class="text-center text-white">
-                                    New member? &nbsp;
-                                    <a class="heading" href="Register.html"> Register Now</a>
-                                    <br>
-                                    Admin? &nbsp;
-                                    <a class="heading" href="chooseAdmin.html"> Login Here</a>
-                                </div>
+                                <button type="button" class="btn btn-secondary w-100 py-3" onclick="window.location.href='spotAdminlogin.html';">spot admin</button>
 
-                        </div>
-                    </form>
+                            </div>
+                            <br>
+
+                            <div class="col-12">
+                                <button type="button" class="btn btn-secondary w-100 py-3" onclick="window.location.href='adminlogin.html';">Main admin</button>
+
+                            </div>
+                                
+                                
+
+                            
                 </div>
             </div>
         </div>
@@ -129,8 +119,9 @@
 <!--Sign in end-->
 
 
-       <!-- Footer Start -->
-       <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.2s">
+    <!-- Footer Start -->
+
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.2s">
         <div class="container py-0">
             <div class="row g-2">
                 <div class="col-lg-3 col-md-6">
@@ -171,6 +162,7 @@
         </div>
     </div>
     <!-- Footer End -->
+
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
