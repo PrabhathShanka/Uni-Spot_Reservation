@@ -92,13 +92,8 @@ if (isset($_SESSION['userName'])) {
             </div>
 
                     <div class="nav-item dropdown">
-                        <a href="Sign in.html" class="nav-link dropdown-toggle btn btn-primary py-4 px-lg-5 d-none d-lg-block">Sign in </a>
-                            <div class="dropdown-menu fade-up m-0">
-                                <a href="Sign in.html" class="dropdown-item">Sign in</a>
-                                <a href="Register.html" class="dropdown-item">Register</a>
-                                <a href="" class="dropdown-item"></a>
-                                <!--<a href="adminlogin.html" class="dropdown-item">Admin Login</a>-->
-                            </div>
+                    <a href="index.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Home<i class="fa fa-arrow-right ms-3"></i></a>
+
                     </div>
 
         </div>
