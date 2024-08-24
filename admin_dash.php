@@ -110,16 +110,7 @@
 
 <div class="main" id="go-home"></div>
 
-<!-- Spinner Start 
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>
- Spinner End -->
 
-
- 
  <!-- Navbar Start -->
  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
  <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -135,43 +126,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="?msg=Messages+" class="nav-item nav-link ">Pending Appoinment</a>
-                    <a href="?record=serviseRecord" class="nav-item nav-link">Service Record</a>
-                    <a href="?app=Appoinment" class="nav-item nav-link">Vehicle Details</a>
-                    <a href="?vri=+Register+Info" class="nav-item nav-link">Register Details</a>
-                    <a href="?dashb=+Dashboard" class="nav-item nav-link">service managed  </a>
+                    <a href="?appo=Appoinment" class="nav-item nav-link ">Pending Appoinment</a>
+                    <a href="?pEvent=event" class="nav-item nav-link">Pending event</a>
+                    <a href="?histo=history" class="nav-item nav-link">Event history</a>
+                    <a href="?sManege=SpotManaged" class="nav-item nav-link">Spot managed  </a>
                     <a href="admin_setting.php" class="nav-item nav-link">settings</a>
 
-
-
-                        <!-- <div class="nav-item dropdown">
-                            <div class="testimonial-item text-center">
-                                <img class="bg-light rounded-circle p-2 mx-auto mb-10" src="img/feedbak4.jpg" style="width: 70px; height: 70px;">
-                            </div> 
-                            <div class="dropdown-menu fade-up m-0">
-                                <a href="index.html" class="dropdown-item">Log Out </a>
-                            </div>
-                        </div> -->
 
                         <div class="nav-item dropdown">
                             <a href="index.html" class="nav-link btn btn-primary py-4 px-lg-5 d-none d-lg-block">Log Out</a>
                         </div>
                 </div>
-
-
-        </div>
-
-
-                
-                <!--<div class="nav-item dropdown">
-                    <img  src="img/profile.png" alt="Image 1" width="50" height="50">  class="bg-light rounded-circle p-2 mx-auto mb-3"
-                    <div class="dropdown-menu fade-up m-0">
-                        <a href="index.html" class="dropdown-item">Log Out </a>
-                    </div>
-                </div>-->
-
-                
-        
+        </div>        
     </nav>
     <!-- Navbar End -->
 
@@ -207,51 +173,41 @@
                                                     
         
                                                     <li>
-                                                    <a href='?msg=Messages+'>
+                                                    <a href='?appo=Appoinment'>
                                                         <i class='bx bx-chat' ></i>
                                                         <span class="links_name">Messages</span>
                                                     </a>
-                                                    <span class="tooltip">Pending Appoinment</span>
+                                                    <span class="tooltip">Appoinment</span>
+                                                    </li>
+
+   
+
+
+                                                    <li>
+                                                    <a href='?pEvent=Appoinment'>
+                                                        <i class='bx bx-pie-chart-alt-2' ></i>
+                                                        <span class="links_name">event</span>
+                                                    </a>
+                                                    <span class="tooltip">Pending event</span>
                                                     </li>
 
 
-
-                                                    
-        
-                                                   
-
-                                                    <li><a href='?record=serviseRecord'>
+                                                    <li><a href='?histo=history'>
                                                         <i class='bx bx-search' ></i>
                                                         <input type="text" placeholder="Search...">
-                                                        <span class="tooltip">Service Record </span>
-                                                    </li>
-
-
-                                                    <li>
-                                                    <a href='?app=Appoinment'>
-                                                        <i class='bx bx-pie-chart-alt-2' ></i>
-                                                        <span class="links_name">Appoinment</span>
-                                                    </a>
-                                                    <span class="tooltip">Vehicle Details</span>
+                                                        <span class="tooltip">Event history </span>
                                                     </li>
                                   
-                                             
-                                                    <li>
-                                                    <a href='?vri=+Register+Info'>
-                                                        <i class='bx bx-user' ></i>
-                                                        <span class="links_name">Register Details</span>
-                                                    </a>
-                                                    <span class="tooltip">Register Details</span>
-                                                    </li>
 
 
                                                     <li>
-                                                        <a href="?dashb=+Dashboard">
+                                                        <a href="?sManege=SpotManaged">
                                                         <i class='bx bx-grid-alt'></i>
                                                         <span class="links_name">Dashboard</span>
                                                         </a>
-                                                        <span class="tooltip">service managed</span>
+                                                        <span class="tooltip">spot management</span>
                                                     </li>
+
                                                     
                                                     <li class="profile">
                                                     <a href="index.html">
@@ -273,34 +229,22 @@
 <?php
 
     //Pending Appoinment start
-    if(isset($_GET['msg'])){
+    if(isset($_GET['appo'])){
         
 
 // Database connection parameters
-$conn = new mysqli('localhost', 'root', '', 'reg');
+require 'DatabaseConnection.php';
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Search query
-if(isset($_GET['search'])) {
-    $search = $_GET['search'];
-    // Prevent SQL injection by using prepared statements
-    $sql = "SELECT * FROM appoinment WHERE license_Plate LIKE ?";
-    $stmt = $conn->prepare($sql);
-    // Bind parameter with '%' to match any character sequence before and after the search term
-    $search_term = "%$search%";
-    $stmt->bind_param("s", $search_term);
-    // Execute statement
-    $stmt->execute();
-    $result = $stmt->get_result();
-} else {
+
     // If no search query, fetch all records
-    $sql = "SELECT * FROM appoinment";
+    $sql = "SELECT * FROM bookingspot";
     $result = $conn->query($sql);
-}
+
 
 $conn->close();
 
@@ -310,24 +254,17 @@ $rawValue = "pending"
 
 
     <h2>Pending Appoinment</h2>
-    <form action="" method="get">
-        <input type="text" name="search" placeholder="Search by Product Name">
-        <button type="submit">Search</button>
-    </form>
+    <br>
 
-    <h3>Search Results:</h3>
     
-
-
-
     <?php 
-echo "<table border='1px' id='table' align='right'><tr><th>License Plate</th><th>package</th><th>Date</th><th>Time</th><th>Message</th><th>Actions</th></tr>";
+echo "<table border='1px' id='table' align='right'><tr><th>Spot Name</th><th>Evevnt Name</th><th>Discription</th><th>Date</th><th>Time</th><th>Actions</th></tr>";
 while ($row = $result->fetch_assoc()) {
-  if ($row['status'] == $rawValue) {
+  if ($row['mainAdminApproving'] == $rawValue & $row['spotAdminApproving'] == "Approved") {
     // Use $row instead of $raw
-    echo "<tr><td>".$row['license_Plate']."</td><td>".$row['package']."</td><td>".$row['date']."</td><td>".$row['time']."</td><td>".$row['message']."</td><td>
-    <a href='appoinment _completed.php?id=".$row['appoimentID']."'><b>| completed |</b></a>
-    <a href='pending_appoinment_delete.php?id=".$row['appoimentID']."'><b>| Delete |</b></a></td></tr>";
+    echo "<tr><td>".$row['spotName']."</td><td>".$row['eventName']."</td><td>".$row['DescriptionOfEvents']."</td><td>".$row['date']."</td><td>".$row['time']."</td><td>
+    <a href='appoinment _completed.php?id=".$row['bookingID']."'><b>| Approving |</b></a>
+    <a href='pending_appoinment_delete.php?id=".$row['bookingID']."'><b>| Not Approving |</b></a></td></tr>";
 }
 }
 echo "</table>";
@@ -339,64 +276,73 @@ echo "</table>";
 
 
 
-   //servise record
+   //pendimg event
 
-   if(isset($_GET['record'])){
-    $conn= new mysqli('localhost','root','','reg');
+   if(isset($_GET['pEvent'])){
+  
+    // Database connection parameters
+    require 'DatabaseConnection.php';
+
     if($conn->connect_error){
         die('Not Connected..');
     }
     else{  
         ?>
         <br>
-        <h1>Service Record</h1> <br> <?php
-        $rawValue = 'completed';
-        $sql="select * from appoinment";
-        $data=$conn->query($sql);
+        <h1>Pending Event</h1> <br> <?php
+
+        $rawValue1 = "Not complete";
+
+        $sql="select * from bookingspot";
+        $result = $conn->query($sql);
     
         
-        echo "<table border='1px' id='table' align = 'right'> <tr><th>Date</th><th>License Plate</th><th>package</th><th>Total Price</th><th>Actions</th></tr>";
-        while($raw = mysqli_fetch_array($data)){
-            if ($raw[7] == $rawValue) {
-            echo "<tr><td>".$raw[3]."</td><td>".$raw[1]."</td><td>".$raw[2]."</td><td>".$raw[6]."</td><td>
-            
-            <a href='serviceRecord_delete.php?id=".$raw[0]."'><b> |Delete| </b></a>
-            <a href='service_Details_admin.php?id=".$raw[0]."'><b>| Service Details |</b></a></td></tr>";
-            
+        echo "<table border='1px' id='table' align = 'right'> <tr><th>Event Name</th><th>Spot Name</th><th>Date</th><th>Time</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+                if ($row['states'] == $rawValue1 & $row['spotAdminApproving'] == "Approved" & $row['mainAdminApproving'] == "Approved") {
+            echo "<tr><td>".$row['eventName']."</td><td>".$row['spotName']."</td><td>".$row['date']."</td><td>".$row['time']."</td></tr>";
             }
         }
         echo"</table>";
         $conn->close();
     }
-
 }
 
-//end servise record
+//end pendimg event
 
 
-    //Vehicle Details start
-                                                if(isset($_GET['app'])){
-                                                    $conn= new mysqli('localhost','root','','reg');
-                                                    if($conn->connect_error){
-                                                        die('Not Connected..');
-                                                    }
-                                                    else{
-                                                        ?>
-                                                        <br>
-                                                        <h1>Vehicle Details</h1> <br> <?php
-                                                        $sql="select * from vehicle";
-                                                        $data=$conn->query($sql);
-                                                        echo "<table border='1px' id='table' align = 'right'><th>License Plate</th><th>NIC Number</th><th>Model</th><th>Manufactured Year</th><th>Actions</th></tr>";
-                                                        while($raw = mysqli_fetch_array($data)){
-                                                            echo "<tr><td>".$raw[0]."</td><td>".$raw[1]."</td><td>".$raw[2]."</td><td>".$raw[3]."</td><td>
-                                                           
-                                                            <a href='vrhicle_details_delete_admin.php?id=".$raw[0]."' ><b>| Delete |</b></a></td></tr>";
-                                                        }
-                                                        echo"</table>";
-                                                        $conn->close();
-                                                    }
-                                                }
-                                                //Vehicle Details end
+    //event history
+     if(isset($_GET['histo'])){
+        
+         // Database connection parameters
+    require 'DatabaseConnection.php';
+
+    if($conn->connect_error){
+        die('Not Connected..');
+    }
+    else{  
+        ?>
+        <br>
+        <h1>Pending Event</h1> <br> <?php
+
+        $rawValue1 = "completed";
+
+        $sql="select * from bookingspot";
+        $result = $conn->query($sql);
+    
+        
+        echo "<table border='1px' id='table' align = 'right'> <tr><th>Event Name</th><th>Spot Name</th><th>Date</th><th>Time</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+                if ($row['states'] == $rawValue1 & $row['spotAdminApproving'] == "Approved" & $row['mainAdminApproving'] == "Approved") {
+            echo "<tr><td>".$row['eventName']."</td><td>".$row['spotName']."</td><td>".$row['date']."</td><td>".$row['time']."</td></tr>";
+            }
+        }
+        echo"</table>";
+        $conn->close();
+    }
+}
+
+                                                //event history end
 
 
 
@@ -443,68 +389,82 @@ if(isset($_GET['vri'])){
 
                                                   <!-- Reg end -->
 
+  <?php
+// Spot managed
 
-                                                  <?php
-// service managed
-
-if(isset($_GET['dashb'])){
-    $conn = new mysqli('localhost', 'root', '', 'reg');
-    if($conn->connect_error){
-        die('Not Connected..');
-    }
-    else{
+if(isset($_GET['sManege'])){
+    
         ?>
         <br>
         <div class="wow fadeInUp" data-wow-delay="1s">
-            <h1>Service Managed</h1>
+            <h1>Spot Managed</h1>
         </div> <br>
-        <?php
-        ?>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Add Service</title>
-        </head>
-        <body>
-            <h4>Insert Service</h4>
-            <form action="service_managed_insert.php" method="post">
-                <label for="serviceName">Service Name:</label>
-                <input type="text" id="serviceName" name="serviceName" required><br>
-        
-                <label for="servicePrice">Service Price:</label>
-                <input type="number" id="servicePrice" name="servicePrice" required><br>
-        
-                <input type="submit" value="INSERT">
-            </form>
-        </body>
-        </html>
-        
-        <?php
-        $sql = "SELECT * FROM services";
-        $data = $conn->query($sql);
-        echo "<table border='1px' id='table'> <tr><th>Service Name</th><th>Service Price</th><th>Actions</th></tr>";
-        while($raw = mysqli_fetch_array($data)){
-            echo "<tr><td>".$raw[1]."</td><td>".$raw[2]."</td><td>
 
-            <a href='service_managed_update.php?id=".$raw[0]."'><b>| Update |</b></a>
-            <a href='service managed_delete.php?id=".$raw[0]."'><b>| Delete |</b></a></td></tr>";
+
+        <?php
+
+
+require 'DatabaseConnection.php';
+
+// Check if a search query is set
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+?>
+
+
+<!-- Search Form -->
+<form method="GET" action="">
+    <input type="text" name="search" placeholder="Search spot by name" value="<?php echo htmlspecialchars($search); ?>">
+    <input type="submit" value="Search">
+</form>
+<br>
+<table border=1 cellspacing=0 cellpadding=10>
+    <tr>
+        <!-- Add table headers if needed -->
+    </tr>
+    <?php
+    // Query to select spots based on the search query
+    if ($search) {
+        $query = "SELECT * FROM spot WHERE spotName LIKE '%$search%'";
+    } else {
+        $query = "SELECT * FROM spot";
+    }
+
+    $rows = mysqli_query($conn, $query);
+    ?>
+
+    <?php foreach ($rows as $row) : ?>
+        <tr>
+            <td style="text-align: center; vertical-align: middle;">
+                <h1><?php echo $row["spotName"]; ?></h1><br>
+                <img src="img2/<?php echo $row["image"]; ?>" width="600" height="400" title="<?php echo $row['image']; ?>"><br>
+                <?php echo $row["description"]; ?><br>
+                <h1><a href='Make_an_Appoinment.php?id=<?php echo urlencode($row["spotName"]); ?>'><b>| DELETE SPOT |</b></a></h1>
+                
+                <hr style="border: 4px solid #FF5733;">
 
             
-        }
-        echo "</table>";
-        $conn->close();
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+    
+
+
+
+ 
         
+       
+ <?php      
     }
 
 
-}
+
 ?>
 
 
 
 
-                                                  <!-- service managed end -->
+                                                  <!-- Spot managed end -->
 
                                                   
 
