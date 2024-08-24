@@ -126,7 +126,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="?appo=Appoinment" class="nav-item nav-link ">Pending Appoinment</a>
+                    <a href="?appo=Appoinment" class="nav-item nav-link ">Pending Booking</a>
                     <a href="?pEvent=event" class="nav-item nav-link">Pending event</a>
                     <a href="?histo=history" class="nav-item nav-link">Event history</a>
                     <a href="?sManege=SpotManaged" class="nav-item nav-link">Spot managed  </a>
@@ -177,7 +177,7 @@
                                                         <i class='bx bx-chat' ></i>
                                                         <span class="links_name">Messages</span>
                                                     </a>
-                                                    <span class="tooltip">Appoinment</span>
+                                                    <span class="tooltip">Pending Booking</span>
                                                     </li>
 
    
@@ -253,7 +253,7 @@ $rawValue = "pending"
 
 
 
-    <h2>Pending Appoinment</h2>
+    <h2>Pending Booking</h2>
     <br>
 
     
@@ -263,8 +263,8 @@ while ($row = $result->fetch_assoc()) {
   if ($row['mainAdminApproving'] == $rawValue & $row['spotAdminApproving'] == "Approved") {
     // Use $row instead of $raw
     echo "<tr><td>".$row['spotName']."</td><td>".$row['eventName']."</td><td>".$row['DescriptionOfEvents']."</td><td>".$row['date']."</td><td>".$row['time']."</td><td>
-    <a href='appoinment _completed.php?id=".$row['bookingID']."'><b>| Approving |</b></a>
-    <a href='pending_appoinment_delete.php?id=".$row['bookingID']."'><b>| Not Approving |</b></a></td></tr>";
+    <a href='MainAdminBookin_approving.php?id=".$row['bookingID']."'><b>| Approving |</b></a>
+    <a href='MainAdminBookin_Not_approving.php?id=".$row['bookingID']."'><b>| Not Approving |</b></a></td></tr>";
 }
 }
 echo "</table>";
