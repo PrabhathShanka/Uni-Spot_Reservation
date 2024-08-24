@@ -1,3 +1,25 @@
+<?php
+
+session_start();
+
+
+if (isset($_SESSION['SpName'])) {
+
+    $SportName = $_SESSION['SpName'];
+
+   // echo $SportName;
+
+
+
+} else {
+
+    header("Location: Sign in3.html");
+    exit();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,8 +151,7 @@
                     <a href="?appo=Appoinment" class="nav-item nav-link ">Pending Booking</a>
                     <a href="?pEvent=event" class="nav-item nav-link">Pending event</a>
                     <a href="?histo=history" class="nav-item nav-link">Event history</a>
-                    <a href="?sManege=SpotManaged" class="nav-item nav-link">Spot managed  </a>
-                    <a href="admin_setting.php" class="nav-item nav-link">settings</a>
+                    <a href="spot_admin_setting.php" class="nav-item nav-link">settings</a>
 
 
                         <div class="nav-item dropdown">
@@ -200,13 +221,7 @@
                                   
 
 
-                                                    <li>
-                                                        <a href="?sManege=SpotManaged">
-                                                        <i class='bx bx-grid-alt'></i>
-                                                        <span class="links_name">Dashboard</span>
-                                                        </a>
-                                                        <span class="tooltip">spot management</span>
-                                                    </li>
+                                                   
 
                                                     
                                                     <li class="profile">
@@ -260,11 +275,11 @@ $rawValue = "pending"
     <?php 
 echo "<table border='1px' id='table' align='right'><tr><th>Spot Name</th><th>Evevnt Name</th><th>Discription</th><th>Date</th><th>Time</th><th>Actions</th></tr>";
 while ($row = $result->fetch_assoc()) {
-  if ($row['mainAdminApproving'] == $rawValue & $row['spotAdminApproving'] == "Approved") {
+  if ($row['spotAdminApproving'] == $rawValue & $row['spotName'] == $SportName) {
     // Use $row instead of $raw
     echo "<tr><td>".$row['spotName']."</td><td>".$row['eventName']."</td><td>".$row['DescriptionOfEvents']."</td><td>".$row['date']."</td><td>".$row['time']."</td><td>
-    <a href='MainAdminBookin_approving.php?id=".$row['bookingID']."'><b>| Approving |</b></a>
-    <a href='MainAdminBookin_Not_approving.php?id=".$row['bookingID']."'><b>| Not Approving |</b></a></td></tr>";
+    <a href='spotAdminBookin_approving.php?id=".$row['bookingID']."'><b>| Approving |</b></a>
+    <a href='spotAdminBookin_Not_approving.php?id=".$row['bookingID']."'><b>| Not Approving |</b></a></td></tr>";
 }
 }
 echo "</table>";
@@ -297,10 +312,13 @@ echo "</table>";
         $result = $conn->query($sql);
     
         
-        echo "<table border='1px' id='table' align = 'right'> <tr><th>Event Name</th><th>Spot Name</th><th>Date</th><th>Time</th></tr>";
+        echo "<table border='1px' id='table' align = 'right'> <tr><th>Event Name</th><th>Spot Name</th><th>Date</th><th>Time</th><th>Actions</th></tr>";
         while ($row = $result->fetch_assoc()) {
-                if ($row['states'] == $rawValue1 & $row['spotAdminApproving'] == "Approved" & $row['mainAdminApproving'] == "Approved") {
-            echo "<tr><td>".$row['eventName']."</td><td>".$row['spotName']."</td><td>".$row['date']."</td><td>".$row['time']."</td></tr>";
+                if ($row['states'] == $rawValue1 & $row['spotAdminApproving'] == "Approved" & $row['mainAdminApproving'] == "Approved"  & $row['spotName'] == $SportName) {
+            echo "<tr><td>".$row['eventName']."</td><td>".$row['spotName']."</td><td>".$row['date']."</td><td>".$row['time']."</td>
+            <td>
+            <a href='event_completed.php?id=".$row['bookingID']."'><b>| Event Complete |</b></a>
+            </td></tr>";
             }
         }
         echo"</table>";
@@ -333,7 +351,7 @@ echo "</table>";
         
         echo "<table border='1px' id='table' align = 'right'> <tr><th>Event Name</th><th>Spot Name</th><th>Date</th><th>Time</th></tr>";
         while ($row = $result->fetch_assoc()) {
-                if ($row['states'] == $rawValue1 & $row['spotAdminApproving'] == "Approved" & $row['mainAdminApproving'] == "Approved") {
+                if ($row['states'] == $rawValue1 & $row['spotAdminApproving'] == "Approved" & $row['mainAdminApproving'] == "Approved"  & $row['spotName'] == $SportName) {
             echo "<tr><td>".$row['eventName']."</td><td>".$row['spotName']."</td><td>".$row['date']."</td><td>".$row['time']."</td></tr>";
             }
         }
@@ -356,88 +374,20 @@ echo "</table>";
 
 ?>
  
-                                           <!-- Reg end -->
+
+
+
+
+
+                                                  <!-- Reg end -->
 
   <?php
-// Spot managed
-
-if(isset($_GET['sManege'])){
-    
-        ?>
-        <br>
-        <div class="wow fadeInUp" data-wow-delay="1s">
-            <h1>Spot Managed</h1>
-        </div> <br>
-
-
-        <?php
-
-
-require 'DatabaseConnection.php';
-
-// Check if a search query is set
-$search = isset($_GET['search']) ? $_GET['search'] : '';
-?>
-
-
-<!-- Search Form -->
-<form method="GET" action="">
-    <input type="text" name="search" placeholder="Search spot by name" value="<?php echo htmlspecialchars($search); ?>">
-    <input type="submit" value="Search">
-</form>
-<br>
-<table border=1 cellspacing=0 cellpadding=10>
-    <tr>
-        <!-- Add table headers if needed -->
-    </tr>
-    <?php
-    // Query to select spots based on the search query
-    if ($search) {
-        $query = "SELECT * FROM spot WHERE spotName LIKE '%$search%'";
-    } else {
-        $query = "SELECT * FROM spot";
-    }
-
-    $rows = mysqli_query($conn, $query);
-    ?>
-
-    <?php foreach ($rows as $row) : ?>
-        <tr>
-            <td style="text-align: center; vertical-align: middle;">
-                <h1><?php echo $row["spotName"]; ?></h1><br>
-                <img src="img2/<?php echo $row["image"]; ?>" width="600" height="400" title="<?php echo $row['image']; ?>"><br>
-                <?php echo $row["description"]; ?><br>
-                <h1><a href='Make_an_Appoinment.php?id=<?php echo urlencode($row["spotName"]); ?>'><b>| DELETE SPOT |</b></a></h1>
-                
-                <hr style="border: 4px solid #FF5733;">
-
-            
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</table>
-    
-
-
-
- 
-        
-       
- <?php      
-    }
-
 
 
 ?>
-
-
-
-
-                                                  <!-- Spot managed end -->
-
                                                   
 
-    </div>
+   
 
 </div>
 
