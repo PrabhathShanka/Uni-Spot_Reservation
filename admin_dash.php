@@ -407,7 +407,7 @@ $search = isset($_GET['search']) ? $_GET['search'] : '';
                 <h1><?php echo $row["spotName"]; ?></h1><br>
                 <img src="img2/<?php echo $row["image"]; ?>" width="600" height="400" title="<?php echo $row['image']; ?>"><br>
                 <?php echo $row["description"]; ?><br>
-                <h1><a href='Make_an_Appoinment.php?id=<?php echo urlencode($row["spotName"]); ?>'><b>| DELETE SPOT |</b></a></h1>
+                <h1><a href='spot_delete.php?id=<?php echo urlencode($row["spotName"]); ?>'><b>| DELETE SPOT |</b></a></h1>
                 
                 <hr style="border: 4px solid #FF5733;">
 
