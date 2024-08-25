@@ -262,8 +262,24 @@ if ($conn->connect_error) {
 
 
     // If no search query, fetch all records
+    
     $sql = "SELECT * FROM bookingspot";
+
+
+
+// $sql = "SELECT c.CusId,c.CusName, c.CusTeleNo, o.OrdeId, o.OrderDate, o.TotalAmount, p.PaymentDate
+// FROM customer c
+// INNER JOIN orders o ON c.CusId = o.CusId 
+// INNER JOIN orderpayment p ON o.OrdeId = p.OrderId
+// WHERE o.OrdeId = $ordeID;
+// ";
+
+
     $result = $conn->query($sql);
+
+
+
+    
 
 
 $conn->close();
