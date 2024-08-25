@@ -25,6 +25,8 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
 
     $pass = validate($_POST['pass']);
 
+    $Faculty = $_POST['FacultyNamer'];
+
     if (empty($uname)) {
 
         echo "User Name is required";
@@ -39,7 +41,7 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
 
     }else{
 
-        $sql = "SELECT * FROM admindetails WHERE uname='$uname' AND password ='$pass'";
+        $sql = "SELECT * FROM admindetails WHERE uname='$uname' AND password ='$pass' AND faculty ='$Faculty'";
 
         $result = mysqli_query($conn, $sql);
 
@@ -47,7 +49,10 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
 
             $row = mysqli_fetch_assoc($result);
 
-            if ($row['uname'] === $uname && $row['password'] === $pass) {
+            if ($row['uname'] === $uname && $row['password'] === $pass && $row['faculty'] === $Faculty) {
+
+                $_SESSION['Faculty'] = $Faculty;
+
                 header("Location: admin_dash.php");
                 exit();
                 

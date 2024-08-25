@@ -1,3 +1,23 @@
+<?php
+session_start();
+
+
+if (isset($_SESSION['Faculty'])) {
+
+    $Faculty = $_SESSION['Faculty'];
+  //  echo $Faculty;
+
+
+
+} else {
+
+    header("Location: Sign in3.html");
+    exit();
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
