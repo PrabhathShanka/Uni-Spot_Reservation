@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2024 at 07:38 AM
+-- Generation Time: Aug 26, 2024 at 06:33 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `admindetails` (
   `adminID` int(20) NOT NULL AUTO_INCREMENT,
   `uname` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
+  `faculty` varchar(50) NOT NULL,
   PRIMARY KEY (`adminID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
@@ -37,9 +38,15 @@ CREATE TABLE IF NOT EXISTS `admindetails` (
 -- Dumping data for table `admindetails`
 --
 
-INSERT INTO `admindetails` (`adminID`, `uname`, `password`) VALUES
-(1, 'admin', '123'),
-(9, 'prabhath', '123');
+INSERT INTO `admindetails` (`adminID`, `uname`, `password`, `faculty`) VALUES
+(1, 'admin', 'GE123', 'Geomatics'),
+(9, 'admin', 'AP123', 'Applied Sciences'),
+(10, 'admin', 'SO123', 'Social Sciences and Languages'),
+(11, 'admin', 'MA123', 'Management Studies'),
+(12, 'admin', 'CO123', 'Computing'),
+(13, 'admin', 'TE123', 'Technology'),
+(14, 'admin', 'AG123', 'Agricultural Science'),
+(15, 'admin', 'ME123', 'Medicine');
 
 -- --------------------------------------------------------
 
@@ -61,15 +68,16 @@ CREATE TABLE IF NOT EXISTS `bookingspot` (
   PRIMARY KEY (`bookingID`),
   KEY `useName` (`useName`),
   KEY `spotName` (`spotName`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `bookingspot`
 --
 
 INSERT INTO `bookingspot` (`bookingID`, `eventName`, `DescriptionOfEvents`, `date`, `time`, `spotAdminApproving`, `mainAdminApproving`, `useName`, `spotName`, `states`) VALUES
-(1, 'Criket match', 'test 01', '2024-08-31', 'Whole Day', 'pending', 'pending', 'Shiran', 'Matta Ground', 'completed'),
-(3, 'test 01', 'description test 01', '2024-08-31', 'Evening (1.00 p.m - 6.00 p.m)', 'pending', 'pending', 'Shiran', 'Social Auditorium', 'completed');
+(1, 'Criket match', 'test 01', '2024-08-31', 'Whole Day', 'Approved', 'pending', 'Shiran', 'Matta Ground', 'Not complete'),
+(3, 'test 01', 'description test 01', '2024-08-31', 'Evening (1.00 p.m - 6.00 p.m)', 'Approved', 'pending', 'Shiran', 'Social Auditorium', 'Not complete'),
+(4, 'test p 03', '03 testing prabhath', '2024-08-29', 'Evening (1.00 p.m - 6.00 p.m)', 'Approved', 'pending', 'prabhath', 'Matta Ground', 'completedNot complete');
 
 -- --------------------------------------------------------
 
@@ -100,13 +108,14 @@ INSERT INTO `spot` (`spotName`, `image`, `description`, `password1`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
-  `fullName` int(100) NOT NULL,
+  `fullName` varchar(100) NOT NULL,
   `userName` varchar(50) NOT NULL,
   `teleNumber` int(10) NOT NULL,
   `NICNumber` varchar(15) NOT NULL,
   `registerNumber` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password1` varchar(50) NOT NULL,
+  `faculty` varchar(50) NOT NULL,
   PRIMARY KEY (`userName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -114,8 +123,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`fullName`, `userName`, `teleNumber`, `NICNumber`, `registerNumber`, `email`, `password1`) VALUES
-(0, 'Shiran', 777587369, '999155876V', '20G5864a', 'shiran@gmail.com', '123');
+INSERT INTO `users` (`fullName`, `userName`, `teleNumber`, `NICNumber`, `registerNumber`, `email`, `password1`, `faculty`) VALUES
+('prabhath madushanka', 'prabhath', 776698556, '997776845V', 'HDSE245568', 'prabhath@gmailcom', '123', 'Computing'),
+('Shiran Malitha', 'Shiran', 777587369, '999155876V', '20G5864a', 'shiran@gmail.com', '123', 'Applied Sciences');
 
 --
 -- Constraints for dumped tables
