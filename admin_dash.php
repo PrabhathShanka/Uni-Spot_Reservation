@@ -299,7 +299,7 @@ $rawValue = "pending";
     <?php 
 echo "<table border='1px' id='table' align='right'><tr><th>Spot Name</th><th>Event Name</th><th>Description</th><th>Date</th><th>Time</th><th>Actions</th></tr>";
 while ($row = $result->fetch_assoc()) {
-  if ($row['mainAdminApproving'] == $rawValue && $row['spotAdminApproving'] == "Approved") {
+  if ($row['mainAdminApproving'] == $rawValue) {
     echo "<tr><td>".$row['spotName']."</td><td>".$row['eventName']."</td><td>".$row['DescriptionOfEvents']."</td><td>".$row['date']."</td><td>".$row['time']."</td><td>
     <a href='MainAdminBookin_approving.php?id=".$row['bookingID']."'><b>| Approving |</b></a>
     <a href='MainAdminBookin_Not_approving.php?id=".$row['bookingID']."'><b>| Not Approving |</b></a></td></tr>";

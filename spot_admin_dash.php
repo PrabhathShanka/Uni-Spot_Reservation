@@ -275,7 +275,7 @@ $rawValue = "pending"
     <?php 
 echo "<table border='1px' id='table' align='right'><tr><th>Spot Name</th><th>Evevnt Name</th><th>Discription</th><th>Date</th><th>Time</th><th>Actions</th></tr>";
 while ($row = $result->fetch_assoc()) {
-  if ($row['spotAdminApproving'] == $rawValue & $row['spotName'] == $SportName) {
+  if ($row['spotAdminApproving'] == $rawValue && $row['mainAdminApproving'] == "Approved" && $row['spotName'] == $SportName)  {
     // Use $row instead of $raw
     echo "<tr><td>".$row['spotName']."</td><td>".$row['eventName']."</td><td>".$row['DescriptionOfEvents']."</td><td>".$row['date']."</td><td>".$row['time']."</td><td>
     <a href='spotAdminBookin_approving.php?id=".$row['bookingID']."'><b>| Approving |</b></a>
