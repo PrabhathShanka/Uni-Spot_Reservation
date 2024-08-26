@@ -263,7 +263,7 @@ if ($conn->connect_error) {
 
     // If no search query, fetch all records
     
-    $sql = "SELECT * FROM bookingspot";
+   // $sql = "SELECT * FROM bookingspot";
 
 
 
@@ -274,17 +274,20 @@ if ($conn->connect_error) {
 // WHERE o.OrdeId = $ordeID;
 // ";
 
+// Corrected SQL query with faculty in quotes
+$sql = "SELECT bookingspot.*, users.faculty 
+FROM bookingspot 
+INNER JOIN users ON bookingspot.useName = users.userName
+WHERE users.faculty = '$Faculty'";
 
-    $result = $conn->query($sql);
+$result = $conn->query($sql);
 
+// Check for errors in the query
+if (!$result) {
+die("Query failed: " . $conn->error);
+}
 
-
-    
-
-
-$conn->close();
-
-$rawValue = "pending"
+$rawValue = "pending";
 ?>
 
 
@@ -294,17 +297,15 @@ $rawValue = "pending"
 
     
     <?php 
-echo "<table border='1px' id='table' align='right'><tr><th>Spot Name</th><th>Evevnt Name</th><th>Discription</th><th>Date</th><th>Time</th><th>Actions</th></tr>";
+echo "<table border='1px' id='table' align='right'><tr><th>Spot Name</th><th>Event Name</th><th>Description</th><th>Date</th><th>Time</th><th>Actions</th></tr>";
 while ($row = $result->fetch_assoc()) {
-  if ($row['mainAdminApproving'] == $rawValue & $row['spotAdminApproving'] == "Approved") {
-    // Use $row instead of $raw
+  if ($row['mainAdminApproving'] == $rawValue && $row['spotAdminApproving'] == "Approved") {
     echo "<tr><td>".$row['spotName']."</td><td>".$row['eventName']."</td><td>".$row['DescriptionOfEvents']."</td><td>".$row['date']."</td><td>".$row['time']."</td><td>
     <a href='MainAdminBookin_approving.php?id=".$row['bookingID']."'><b>| Approving |</b></a>
     <a href='MainAdminBookin_Not_approving.php?id=".$row['bookingID']."'><b>| Not Approving |</b></a></td></tr>";
-}
+  }
 }
 echo "</table>";
-
 
     
 }
@@ -329,8 +330,20 @@ echo "</table>";
 
         $rawValue1 = "Not complete";
 
-        $sql="select * from bookingspot";
-        $result = $conn->query($sql);
+        // $sql="select * from bookingspot";
+        // $result = $conn->query($sql);
+
+$sql = "SELECT bookingspot.*, users.faculty 
+FROM bookingspot 
+INNER JOIN users ON bookingspot.useName = users.userName
+WHERE users.faculty = '$Faculty'";
+
+$result = $conn->query($sql);
+
+// Check for errors in the query
+if (!$result) {
+die("Query failed: " . $conn->error);
+}
     
         
         echo "<table border='1px' id='table' align = 'right'> <tr><th>Event Name</th><th>Spot Name</th><th>Date</th><th>Time</th></tr>";
@@ -363,8 +376,17 @@ echo "</table>";
 
         $rawValue1 = "completed";
 
-        $sql="select * from bookingspot";
+        $sql = "SELECT bookingspot.*, users.faculty 
+        FROM bookingspot 
+        INNER JOIN users ON bookingspot.useName = users.userName
+        WHERE users.faculty = '$Faculty'";
+        
         $result = $conn->query($sql);
+        
+        // Check for errors in the query
+        if (!$result) {
+        die("Query failed: " . $conn->error);
+        }
     
         
         echo "<table border='1px' id='table' align = 'right'> <tr><th>Event Name</th><th>Spot Name</th><th>Date</th><th>Time</th></tr>";
