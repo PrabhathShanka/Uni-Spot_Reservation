@@ -113,7 +113,7 @@ if (isset($_SESSION['userName'])) {
                             <div class="col-10 col-lg-7 text-center text-lg-start">
                                
                                 <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Uni-Spot Reservation </h1>
-                                <a href="Sign in.html" class="btn btn-primary py-3 px-5 animated slideInDown">Spot Booking / Spot Managing<i class="fa fa-arrow-right ms-3"></i></a>
+                                <a href="#go-services" class="btn btn-primary py-3 px-5 animated slideInDown">Spot Booking / Spot Managing<i class="fa fa-arrow-right ms-3"></i></a>
                             </div>
                             <div class="col-lg-5 d-none d-lg-flex animated wow zoomIn" data-wow-delay="0.2s">
                                 <img class="img-fluid" src="img/theater.jpg" alt="Front Car 1">
@@ -130,7 +130,7 @@ if (isset($_SESSION['userName'])) {
                             <div class="col-10 col-lg-7 text-center text-lg-start">
 
                                 <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Uni-Spot Reservation</h1>
-                                <a href="Sign in.html" class="btn btn-primary py-3 px-5 animated slideInDown">Spot Booking / Spot Managing<i class="fa fa-arrow-right ms-3"></i></a>
+                                <a href="#go-services" class="btn btn-primary py-3 px-5 animated slideInDown">Spot Booking / Spot Managing<i class="fa fa-arrow-right ms-3"></i></a>
                             </div>
                             <div class="col-lg-5 d-none d-lg-flex animated wow zoomIn" data-wow-delay="0.2s">
                                 <img class="img-fluid" src="img/geo.jpg" alt="Front Car 3">

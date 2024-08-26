@@ -134,11 +134,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="admin_dash.php?msg=Messages+" class="nav-item nav-link ">Pending Appoinment</a>
+                    <!-- <a href="admin_dash.php?msg=Messages+" class="nav-item nav-link ">Pending Appoinment</a>
                     <a href="admin_dash.php?record=serviseRecord" class="nav-item nav-link">Service Record</a>
                     <a href="admin_dash.php?app=Appoinment" class="nav-item nav-link">Vehicle Details</a>
                     <a href="admin_dash.php?vri=+Register+Info" class="nav-item nav-link">Register Details</a>
-                    <a href="admin_dash.php?dashb=+Dashboard" class="nav-item nav-link">service managed  </a>
+                    <a href="admin_dash.php?dashb=+Dashboard" class="nav-item nav-link">service managed  </a> -->
                     
 
 
@@ -174,32 +174,32 @@
                                                   <?php
 // Setting
 
-require 'DatabaseConnection.php';
-    if($conn->connect_error){
-        die('Not Connected..');
-    }
-    else{
-        ?>
-        <br>
-        <div class="wow fadeInUp" data-wow-delay="1s">
-            <h1>Admin Details</h1>
-        </div> <br>
-        <?php
-        $sql = "SELECT * FROM admindetails";
-        $data = $conn->query($sql);
-        echo "<table border='1px' id='table'> <tr><th>User Name</th><th>Password</th><th>Actions</th></tr>";
-        while($raw = mysqli_fetch_array($data)){
-            echo "<tr><td>".$raw[1]."</td><td>".$raw[2]."</td><td>
+// require 'DatabaseConnection.php';
+//     if($conn->connect_error){
+//         die('Not Connected..');
+//     }
+//     else{
+         ?>
+<!-- //         <br>
+//         <div class="wow fadeInUp" data-wow-delay="1s">
+//             <h1>Admin Details</h1>
+//         </div> <br>
+
+//         $sql = "SELECT * FROM admindetails";
+//         $data = $conn->query($sql);
+//         echo "<table border='1px' id='table'> <tr><th>User Name</th><th>Password</th><th>Actions</th></tr>";
+//         while($raw = mysqli_fetch_array($data)){
+//             echo "<tr><td>".$raw[1]."</td><td>".$raw[2]."</td><td>
             
           
-            <a href='admin_delete.php?id=".$raw[0]."'><b>| Delete |</b></a>" ;
+//             <a href='admin_delete.php?id=".$raw[0]."'><b>| Delete |</b></a>" ;
             
-        }
-        echo "</table>";
-        echo  "<a href='admin_insert.php'><h3><b><right>| Add new Admin |</right></b></h3></a></td></tr>" ;
-        $conn->close();
+//         }
+//         echo "</table>";
+//         echo  "<a href='admin_insert.php'><h3><b><right>| Add new Admin |</right></b></h3></a></td></tr>" ;
+//         $conn->close();
         
-    }
+//     }
 
 ?>
 
