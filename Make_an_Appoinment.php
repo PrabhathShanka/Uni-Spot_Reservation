@@ -253,7 +253,7 @@ require 'DatabaseConnection.php';
 
                                         
                                         <div class="col-12">
-                                            <textarea class="form-control border-0"  name="Description" placeholder="Description of event"></textarea>
+                                            <textarea class="form-control border-0"  name="Description" placeholder="Purpose of event"></textarea>
                                         </div>
 
 
