@@ -4,21 +4,21 @@
 
 require 'DatabaseConnection.php';
 
-session_start(); 
+session_start();
 
 
 if (isset($_POST['uname']) && isset($_POST['pass'])) {
 
-    function validate($data){
+    function validate($data)
+    {
 
-       $data = trim($data);
+        $data = trim($data);
 
-       $data = stripslashes($data);
+        $data = stripslashes($data);
 
-       $data = htmlspecialchars($data);
+        $data = htmlspecialchars($data);
 
-       return $data;
-
+        return $data;
     }
 
     $uname = validate($_POST['uname']);
@@ -30,14 +30,12 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
         echo "User Name is required";
 
         exit();
+    } else if (empty($pass)) {
 
-    }else if(empty($pass)){
-
-        echo"Password is required";
+        echo "Password is required";
 
         exit();
-
-    }else{
+    } else {
 
         $sql = "SELECT * FROM spot WHERE spotName='$uname' AND password1 ='$pass'";
 
@@ -50,25 +48,22 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
             if ($row['spotName'] === $uname && $row['password1'] === $pass) {
 
                 $_SESSION['SpName'] = $uname;
-                header("Location: spot_admin_dash.php");
+                header("Location: spot_admin_dash.php?appo=Appoinment");
                 exit();
-                
-            }
-            
-            else{
+            } else {
 
-        //    header("Location: adminlogin.html");
+                //    header("Location: adminlogin.html");
 
-        echo
-            "
+                echo
+                "
             <script>
               alert('Invalid User Name or Password. please try again !!!!');
               document.location.href = 'spotAdminlogin.html';
             </script>
             ";
-           exit();}
-
-        }else{
+                exit();
+            }
+        } else {
 
             echo
             "
@@ -77,13 +72,12 @@ if (isset($_POST['uname']) && isset($_POST['pass'])) {
               document.location.href = 'spotAdminlogin.html';
             </script>
             ";
-  
+
             // header("Location: adminlogin.html");
-            exit();}
- 
+            exit();
         }
     }
-        else{
-                exit();
-            }
+} else {
+    exit();
+}
 ?>
