@@ -89,6 +89,7 @@ if (isset($_SESSION['userName'])) {
                 <a href="#go-about" class="nav-item nav-link">About</a>
                 <a href="#go-services" class="nav-item nav-link">Spot Details</a>
                 <a href="#go-contact" class="nav-item nav-link">LOCATION </a>
+                <a href="user_setting.php" class="nav-item nav-link">settings</a>
             </div>
 
             <div class="nav-item dropdown">
