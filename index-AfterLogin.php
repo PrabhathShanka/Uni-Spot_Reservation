@@ -5,10 +5,6 @@ session_start();
 if (isset($_SESSION['userName'])) {
 
     $uname = $_SESSION['userName'];
-    //  echo $uname;
-
-
-
 } else {
 
     header("Location: Sign in3.html");
